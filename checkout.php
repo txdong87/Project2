@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title> Categories!</title>
+	<title> Checkout!</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<!-- <meta http-equiv="refresh" content="1"> -->
@@ -19,8 +19,11 @@ session_start();
 
 
 	<link rel="stylesheet" href="css/all-style.css">
+    
+    <link rel="stylesheet" href="css/style.css">
 
-	<link rel="stylesheet" href="css/style.css">
+
+	
 
 	
 </head>
@@ -38,8 +41,8 @@ session_start();
 	<?php require('chunks/navbar.php'); ?>
 
 
-	<?php require('chunks/banner-slider.php'); ?>
-	<?php require('chunks/categories.php'); ?>
+
+	<?php require('chunks/checkout.php'); ?>
 
 
 	<?php require('chunks/footer.php'); ?>
@@ -50,9 +53,6 @@ session_start();
 	  src="https://code.jquery.com/jquery-3.4.1.min.js"
 	  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	  crossorigin="anonymous"></script>
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="js/loaders.js"></script>
     <script src="js/ajax.js"></script>

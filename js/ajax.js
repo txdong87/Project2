@@ -29,19 +29,19 @@ $(function(){
 
 		if ((name == "") || (email == "") || (password == "") || (con_password == "")) {
 
-			$('#reg_error').text("Don't leave the fields blank!");
+			$('#reg_error').text("Không được để trống!");
 		}
 		else if (!mail_regex.test(email)) {
 
-			$('#reg_error').text('Enter a valid Email!');
+			$('#reg_error').text('Nhập lại email hợp lệ!');
 		}
 		else if (!name_regex.test(name)) {
 
-			$('#reg_error').text('Enter a Proper Name!');
+			$('#reg_error').text('Nhập lại tên hợp lệ!');
 		}
 		else if (password != con_password) {
 
-			$('#reg_error').text("Passwords doesn't match!");
+			$('#reg_error').text("Xác thực password sai!");
 		} else {
 
 			$.ajax({
@@ -96,11 +96,11 @@ $(function(){
 
 		if ((email == "") || (password == "")) {
 
-			$('#reg_error').text("Don't leave the fields blank!");
+			$('#reg_error').text("Không được để trống!");
 		}
 		else if (!mail_regex.test(email)) {
 
-			$('#reg_error').text('Enter a valid Email!');
+			$('#reg_error').text('Nhập lại email hợp lệ!');
 		} else {
 
 			$.ajax({

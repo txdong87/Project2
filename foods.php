@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title> Categories!</title>
+	<title> Foods!</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<!-- <meta http-equiv="refresh" content="1"> -->
@@ -18,7 +18,7 @@ session_start();
 	<link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
 
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="css/all-style.css">
 
 	<link rel="stylesheet" href="css/style.css">
 
@@ -31,8 +31,8 @@ session_start();
 
 	<?php require('chunks/register-modal.php'); ?>
 
-
 	<?php require('chunks/info-modal.php'); ?>
+
 
 	<?php require('chunks/navbar.php'); ?>
 
@@ -49,10 +49,17 @@ session_start();
 	  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	  crossorigin="anonymous"></script>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <script src="js/loaders.js"></script>
     <script src="js/ajax.js"></script>
+	<script>
+		function addCart(id){
+			$.post("cart.php",{'id':id}, function(data, status){
+			});
+		}
+	</script>	
+	
+	 
 </body>
 </html>

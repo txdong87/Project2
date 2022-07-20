@@ -1,77 +1,116 @@
 <?php
 
 require('backends/connection-pdo.php');
-
-$sql = 'SELECT * FROM orders';
-
-$query  = $pdoconn->prepare($sql);
-$query->execute();
-$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
-?>
-<?php
-// If the user clicked the add to cart button on the product page we can check for the form data
-if (isset($_POST['food_id']) && is_numeric($_POST['product_id']) ) {
-    // Set the post variables so we easily identify them, also make sure they are integer
-    $food_id = (int)$_POST['food_id'];
-    // Prepare the SQL statement, we basically are checking if the product exists in our databaser
-    $stmt = $pdo->prepare('SELECT * FROM food WHERE id = ?');
-    $stmt->execute([$_POST['food_id']]);
-    // Fetch the product from the database and return the result as an Array
-    $food = $stmt->fetch(PDO::FETCH_ASSOC);
-    // Check if the product exists (array is not empty
-    // Prevent form resubmission...
-    header('location: navbar.php');
-    exit;
+if (isset($_POST['id']) && isset($_POST['num'])) {
+    $id=$_POST['id'];
+    if(isset($_SESSION["cart"])){
+    $cart=$_SESSION["cart"];
+    echo "<pre>";
+    print_r($cart);
+    if(array_key_exists($id,$cart)){
+        if($_POST["num"]){
+        $cart[$id]=array(
+			'fname' => $cart[$id]["name"],
+			'price'=>$cart[$id]["price"],
+            'number'=>$_POST['num'],
+        );
+    }else{
+        unset($cart[$id]);
+    }
+}
+    $_SESSION["cart"]=$cart;
+    }
+}
+if (isset($_POST['id']) ) {
+    $id=$_POST['id'];
+    $sqlselect='SELECT * FROM food WHERE id = '.$id;
+    $query  = $pdoconn->prepare($sqlselect);
+    $query->execute();
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    print_r($row);
+    if(!isset($_SESSION["cart"])){
+		$cart[$id]=array(
+			'fname' => $row["fname"],
+			'price'=>$row["price"],
+      'number'=>1,
+		);
+    }else{     
+      $cart=$_SESSION["cart"];
+      if(array_key_exists($id,$cart)){
+        $cart[$id]=array(
+          'fname' => $row["fname"],
+          'price'=>$row["price"],
+          'number'=> (int)$cart[$id]['number']+1,
+        );
+      }else{
+        $cart[$id]=array(
+          'fname' => $row["fname"],
+          'price'=>$row["price"],
+          'number'=>1
+        );
+      }
+    }
+  $_SESSION["cart"]=$cart;
+  $number=0;
+  $total=0;
+  foreach($cart as $values){
+    $number+=(int)$values["number"];
+    $total+=(int)$values["number"]*(int)$values["price"];
+  }
+  echo $number. "-". $total;
+  echo"<prE>";
+  print_r($_SESSION["cart"]);
+exit;
 }?>
-<table class="table table-striped">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Item</th>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-6">
+	       <table class="table table-striped"id="listCart">
+           <thead class="thead-light">
+    <tr>                                                                                                         
+      <th scope="col">Name</th>
       <th scope="col">Price</th>
       <th scope="col">Quantity</th>
       <th scope="col">Total</th>
     </tr>
   </thead>
+<?php if(isset($_SESSION["cart"])){
+  $cart=$_SESSION["cart"];
+  $total=0;
+  $subtotal=0;
+$number=0;
+  foreach($cart as $key=>$values){
+ 
+?>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td><?php echo $arr_all[$i+$j-2]['fname']; ?></td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td class="details"><?php echo $values["fname"]?> </td>
+      <td class="price-center"><?php echo $values["price"]?></td> 
+      <td class="qty text-center"><input class="input" type="number" value="<?php echo $values["number"]?>" id="num_<?php echo $key;?>" onclick="updateCart(<?php echo $key?>)"></td>
+      <td class="total text-center"><strong class="primary-color"><?php 
+      $total=(int)$values["number"]*(int)$values["price"];
+      $subtotal+=$total;
+      echo number_format($total,0,",",".") ;
+      ?>
+      </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <?php }} ?>
   </tbody>
+  <tfoot>
+    <tr>
+      <th class="empty" colspan="2"></th>
+      <th>SUB TOTAL</th>
+      <th class="sub-total" colspan="1"><?php echo $subtotal ?>  VND</th>
+    </tr>
+  </tfoot>
 </table>
-<h1>Product List</h1> 
-<table class="table table-striped">
-  <thead class="thead-light">
-	    <tr> 
-	        <th scope="col">Name</th> 
-	        <th scope="col">Description</th> 
-	        <th scope="col">Price</th> 
-	        <th scope="col">Action</th> 
-	    </tr> 
-	    <tr> 
-	        <td>Product 1</td> 
-	        <td>Some random description</td> 
-	        <td>15 $</th> 
-	        <td><a href="#">Add to cart</a></td> 
-	    </tr> 
-	     <tr> 
-	        <td>Product 2</td> 
-	        <td>Some random description</td> 
-	        <td>25 $</th> 
-	        <td><a href="#">Add to cart</a></td> 
-	    </tr> 
-	</table>
+<div class="bottom-wrap" >
+  
+<a class="btn btn-secondary float-center" href="foods.php" role="button">Shopping </a>
+
+				<a href="checkout.php" class="btn  btn-secondary btn-hover float-left" data-abc="true"> Buy now </a>
+</div>
+				
+			</div> 
+      </div></div></div>

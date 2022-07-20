@@ -17,9 +17,7 @@ session_start();
 	<link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-
+	<link rel="stylesheet" href="css/all-style.css">
 
 	
 </head>
@@ -27,9 +25,9 @@ session_start();
 
 	<?php require('chunks/login-modal.php'); ?>
 	<?php require('chunks/register-modal.php'); ?>
-
-
 	<?php require('chunks/info-modal.php'); ?>
+
+	
 
 
 	<?php require('chunks/navbar.php'); ?>
@@ -56,5 +54,7 @@ session_start();
 
     <script src="js/loaders.js"></script>
     <script src="js/ajax.js"></script>
+	
+	
 </body>
 </html>
