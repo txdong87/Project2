@@ -9,19 +9,21 @@
 	      	<div class="row">
 
 	        <div class="input-field col s12">
-	          <input id="email_login" type="email" class="validate">
+	          <input id="email_login" type="email" class="validate" placeholder="user@gmail.com">
 	          <label for="email">Email</label>
 	        </div>
 
 		    <div class="input-field col s12">
-	          <input id="password_login" type="password" class="validate">
+	          <input id="password_login" type="password" class="validate" placeholder=".........">
 	          <label for="password">Password</label>
 	        </div>
 	        
 		  </div>
 
 		  <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn" id="login_btn" style="background: #ee6e73 !important;">Login</a>
-	      	
+		  <div class="modal-footer">
+	      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+	    </div>
 	      </form>
 	    </div>
 	  </div>

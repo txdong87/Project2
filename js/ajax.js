@@ -29,19 +29,19 @@ $(function(){
 
 		if ((name == "") || (email == "") || (password == "") || (con_password == "")) {
 
-			$('#reg_error').text("Không được để trống!");
+			$('#reg_error').text("Don't leave the fields blank!");
 		}
 		else if (!mail_regex.test(email)) {
 
-			$('#reg_error').text('Nhập lại email hợp lệ!');
+			$('#reg_error').text('Enter a valid Email!');
 		}
 		else if (!name_regex.test(name)) {
 
-			$('#reg_error').text('Nhập lại tên hợp lệ!');
+			$('#reg_error').text('Enter a Proper Name!');
 		}
 		else if (password != con_password) {
 
-			$('#reg_error').text("Xác thực password sai!");
+			$('#reg_error').text("Passwords doesn't match!");
 		} else {
 
 			$.ajax({
@@ -54,7 +54,7 @@ $(function(){
 	            },
 	            dataType:'json',
 	            beforeSend:function(){
-	                // $('#my_data').html('<img src="images/ajax-loader.gif" alt="Loading...">');
+	                
 	                $('#submit_reg').prop("disabled", true);
 
 	            },
@@ -96,11 +96,11 @@ $(function(){
 
 		if ((email == "") || (password == "")) {
 
-			$('#reg_error').text("Không được để trống!");
+			$('#reg_error').text("Don't leave the fields blank!");
 		}
 		else if (!mail_regex.test(email)) {
 
-			$('#reg_error').text('Nhập lại email hợp lệ!');
+			$('#reg_error').text('Enter a valid Email!');
 		} else {
 
 			$.ajax({
