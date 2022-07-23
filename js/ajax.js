@@ -45,7 +45,7 @@ $(function(){
 		} else {
 
 			$.ajax({
-	            url :'/Project 2/backends/register.php',
+	            url :'/Project2/backends/register.php',
 	            type:'POST',
 	            data :{
 	            'name':name,
@@ -104,7 +104,7 @@ $(function(){
 		} else {
 
 			$.ajax({
-	            url :'/Project 2/backends/login.php',
+	            url :'/Project2/backends/login.php',
 	            type:'POST',
 	            data :{
 	            'name':name,
