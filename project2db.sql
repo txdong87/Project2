@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 20, 2022 lúc 02:49 PM
+-- Thời gian đã tạo: Th7 23, 2022 lúc 12:09 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.29
 
@@ -41,44 +41,6 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
 (1, 'Admin', 'admin@gmail.com', '12345'),
 (2, 'Dong', 'tranxuandonghy@gmail.com', '12345');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `cart`
---
-
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  `total_price` varchar(198) NOT NULL,
-  `updateTime` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `carts_items`
---
-
-CREATE TABLE `carts_items` (
-  `id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `cart_item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `cart_item`
---
-
-CREATE TABLE `cart_item` (
-  `id` int(11) NOT NULL,
-  `food_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `updateTime` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -143,55 +105,108 @@ INSERT INTO `food` (`id`, `cat_id`, `fname`, `price`, `description`, `imageUrl`)
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `order_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `food_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `user_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `timestamp` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `users_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` char(20) COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`id`, `order_id`, `user_id`, `food_id`, `user_name`, `timestamp`) VALUES
-(9, 'ABC927654', '3', '6', 'Tran', '09:07:2022 03:56:20pm'),
-(10, 'ABC776950', '3', '2', 'Tran', '11:07:2022 09:20:03pm'),
-(11, 'ABC150415', '3', '2', 'Tran', '19:07:2022 12:38:03am'),
-(12, 'ABC905714', '3', '2', 'Tran', '19:07:2022 01:18:29am'),
-(13, 'ABC386982', '3', '2', 'Tran', '19:07:2022 09:50:39pm'),
-(14, 'ABC264863', '3', '1', 'Tran', '19:07:2022 09:53:13pm'),
-(15, 'ABC176757', '3', '2', 'Tran', '19:07:2022 10:15:19pm'),
-(16, 'ABC331311', '3', '5', 'Tran', '20:07:2022 12:01:25am'),
-(17, 'ABC753453', '3', '2', 'Tran', '20:07:2022 12:17:19am'),
-(18, 'ABC888705', '6', '2  style=', 'SSS', '20:07:2022 07:39:28pm'),
-(19, 'ABC778534', '6', '3  style=', 'SSS', '20:07:2022 0707:0747:0404'),
-(20, 'ABC475688', '6', '2  style=', 'SSS', '20:07:2022 07:0749:15');
+INSERT INTO `orders` (`id`, `users_id`, `name`, `email`, `address`, `phone`, `timestamp`) VALUES
+(2, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '2', '2022-07-22 23:30:26'),
+(3, '', 'Đồng', 'abc@gmail.com', 'q', '0388526678', '2022-07-22 23:51:59'),
+(4, '', 'Đồng', 'abc@gmail.com', 'q', '0388526678', '2022-07-23 03:52:08'),
+(5, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '0388526788', '2022-07-23 03:52:24'),
+(6, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '0388526788', '2022-07-23 03:53:42'),
+(7, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '0388526788', '2022-07-23 03:54:35'),
+(8, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '0388526788', '2022-07-23 03:55:51'),
+(9, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '0388526788', '2022-07-23 03:57:02'),
+(10, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '0388526788', '2022-07-23 03:57:05'),
+(11, '', 'Trần Xuân Đồng', 'tranxuandonghy@gmail.com', 'sdas', '0388526788', '2022-07-23 03:57:25'),
+(12, '', 'abc', 'tranxuandonghy@gmail.com', 'SA', '+0 (388) 526-678', '2022-07-23 03:58:32'),
+(13, '', 'gg', 'ac@gmail.com', '12', '01', '2022-07-23 03:59:53'),
+(14, '', '123', 'tra@gmail.com', '32', '2', '2022-07-23 04:19:33'),
+(15, '', '123', 'tra@gmail.com', '32', '2', '2022-07-23 04:21:16'),
+(16, '', 'python', 'abc@gmail.com', 'sdas', '01', '2022-07-23 04:21:27'),
+(17, '', 'tho', 'abc@gmail.com', '12', '01', '2022-07-23 04:22:34'),
+(18, '', 'tho', 'abc@gmail.com', '12', '01', '2022-07-23 04:29:05'),
+(19, '', 'tho', 'abc@gmail.com', '12', '01', '2022-07-23 04:30:19'),
+(20, '', 'xyz', 'abc@gmail.com', 'sdas', '0388526678', '2022-07-23 04:30:50'),
+(21, '', 'gg', 'abc@gmail.com', 'sdas', '+0 (388) 526-678', '2022-07-23 04:32:16'),
+(22, '1', 'gg', 'abc@gmail.com', 'sdas', '+0 (388) 526-678', '2022-07-23 04:34:52'),
+(23, '1', 'gg', 'dtranxuan72@gmail.com', 'SA', '0388526788', '2022-07-23 04:35:11'),
+(24, '1', 'gg', 'dtranxuan72@gmail.com', 'SA', '0388526788', '2022-07-23 04:37:57'),
+(25, '1', 'Trần Xuân Đồng', 'abc@gmail.com', '1', '2', '2022-07-23 04:40:09'),
+(26, '1', 'Trần Xuân Đồng', 'dtranxuan72@gmail.com', '12', '2', '2022-07-23 05:13:29'),
+(27, '1', 'az', 'abc@gmail.com', 'az', 'az', '2022-07-23 05:14:25'),
+(28, '', '', '', '', '', '0000-00-00 00:00:00'),
+(29, '1', 'az', 'abc@gmail.com', 'az', 'az', '2022-07-23 05:44:25'),
+(30, '1', 'az', 'abc@gmail.com', 'az', 'az', '2022-07-23 09:57:36');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders_items`
+-- Cấu trúc bảng cho bảng `order_detail`
 --
 
-CREATE TABLE `orders_items` (
+CREATE TABLE `order_detail` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `order_item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `order_item`
---
-
-CREATE TABLE `order_item` (
-  `id` int(11) NOT NULL,
-  `food_id` int(11) NOT NULL,
-  `quantity` int(5) NOT NULL,
-  `updateTime` int(11) NOT NULL
+  `order_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `food_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `quantity` int(50) NOT NULL,
+  `price` int(20) NOT NULL,
+  `createAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_detail`
+--
+
+INSERT INTO `order_detail` (`id`, `order_id`, `food_id`, `quantity`, `price`, `createAt`) VALUES
+(1, '4', '3', 1, 15000, '2022-07-22 20:52:08'),
+(2, '4', '2', 1, 50000, '2022-07-22 20:52:08'),
+(3, '5', '3', 1, 15000, '2022-07-22 20:52:24'),
+(4, '5', '2', 1, 50000, '2022-07-22 20:52:24'),
+(5, '6', '3', 1, 15000, '2022-07-22 20:53:42'),
+(6, '6', '2', 1, 50000, '2022-07-22 20:53:42'),
+(7, '14', '2', 1, 50000, '2022-07-22 21:19:33'),
+(8, '15', '2', 1, 50000, '2022-07-22 21:21:16'),
+(9, '16', '2', 1, 50000, '2022-07-22 21:21:27'),
+(10, '17', '2', 3, 50000, '2022-07-22 21:22:34'),
+(11, '17', '1', 1, 29000, '2022-07-22 21:22:34'),
+(12, '18', '2', 3, 50000, '2022-07-22 21:29:05'),
+(13, '18', '1', 1, 29000, '2022-07-22 21:29:05'),
+(14, '19', '2', 3, 50000, '2022-07-22 21:30:19'),
+(15, '19', '1', 1, 29000, '2022-07-22 21:30:19'),
+(16, '21', '3', 4, 15000, '2022-07-22 21:32:16'),
+(17, '22', '3', 4, 15000, '2022-07-22 21:34:52'),
+(18, '23', '3', 2, 15000, '2022-07-22 21:35:11'),
+(19, '24', '3', 2, 15000, '2022-07-22 21:37:57'),
+(20, '25', '3', 1, 15000, '2022-07-22 21:40:09'),
+(21, '25', '4', 1, 15000, '2022-07-22 21:40:09'),
+(22, '25', '8', 1, 39000, '2022-07-22 21:40:09'),
+(23, '26', '3', 1, 15000, '2022-07-22 22:13:29'),
+(24, '26', '4', 1, 15000, '2022-07-22 22:13:29'),
+(25, '26', '8', 1, 39000, '2022-07-22 22:13:29'),
+(26, '27', '3', 2, 15000, '2022-07-22 22:14:25'),
+(27, '27', '4', 1, 15000, '2022-07-22 22:14:25'),
+(28, '27', '8', 1, 39000, '2022-07-22 22:14:25'),
+(29, '29', '3', 2, 15000, '2022-07-22 22:44:25'),
+(30, '29', '4', 1, 15000, '2022-07-22 22:44:25'),
+(31, '29', '8', 1, 39000, '2022-07-22 22:44:25'),
+(32, '30', '3', 2, 15000, '2022-07-23 02:57:36'),
+(33, '30', '4', 1, 15000, '2022-07-23 02:57:36'),
+(34, '30', '8', 1, 39000, '2022-07-23 02:57:36'),
+(35, '0', '3', 2, 15000, '2022-07-23 03:34:52'),
+(36, '0', '4', 1, 15000, '2022-07-23 03:34:52'),
+(37, '0', '8', 1, 39000, '2022-07-23 03:34:52'),
+(38, '0', '3', 3, 15000, '2022-07-23 05:01:06'),
+(39, '0', '2', 2, 50000, '2022-07-23 05:01:06');
 
 -- --------------------------------------------------------
 
@@ -215,7 +230,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `timestamp`) VALUES
 (3, 'Tran Xuan Dong', 'tranxuandonghy@gmail.com', '123456', '0000-00-00 00:00:00'),
 (4, 'abc', '123@gmail.com', '123', NULL),
 (5, 'asd', 'xzc@gmail.com', '123', '0000-00-00 00:00:00'),
-(6, 'SSS', 'a@gmail.com', '123', '0000-00-00 00:00:00');
+(6, 'SSS', 'a@gmail.com', '123', '0000-00-00 00:00:00'),
+(7, 'dang', 'nguyen@gmail.com', '1234', '0000-00-00 00:00:00'),
+(8, 'a', 'abc@gmail.com', '123', '0000-00-00 00:00:00'),
+(9, 'abc', '1@gmail.com', '123', '0000-00-00 00:00:00'),
+(10, 'abc', '12@gmail.com', '12', '0000-00-00 00:00:00'),
+(11, '123', 'ad@gmail.com', '123', '0000-00-00 00:00:00');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -225,26 +245,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `timestamp`) VALUES
 -- Chỉ mục cho bảng `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `carts_items`
---
-ALTER TABLE `carts_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `f_cart_id_constraint` (`cart_id`),
-  ADD KEY `f_cart_item_id_constraint` (`cart_item_id`);
-
---
--- Chỉ mục cho bảng `cart_item`
---
-ALTER TABLE `cart_item`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -260,17 +260,9 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `orders_items`
+-- Chỉ mục cho bảng `order_detail`
 --
-ALTER TABLE `orders_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `f_order_id_constraint` (`order_id`),
-  ADD KEY `f_order_item_id_constraint` (`order_item_id`);
-
---
--- Chỉ mục cho bảng `order_item`
---
-ALTER TABLE `order_item`
+ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -290,24 +282,6 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `carts_items`
---
-ALTER TABLE `carts_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `cart_item`
---
-ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
@@ -317,43 +291,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT cho bảng `orders_items`
+-- AUTO_INCREMENT cho bảng `order_detail`
 --
-ALTER TABLE `orders_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `order_item`
---
-ALTER TABLE `order_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `order_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `carts_items`
---
-ALTER TABLE `carts_items`
-  ADD CONSTRAINT `f_cart_id_constraint` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
-  ADD CONSTRAINT `f_cart_item_id_constraint` FOREIGN KEY (`cart_item_id`) REFERENCES `cart_item` (`id`);
-
---
--- Các ràng buộc cho bảng `orders_items`
---
-ALTER TABLE `orders_items`
-  ADD CONSTRAINT `f_order_id_constraint` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `f_order_item_id_constraint` FOREIGN KEY (`order_item_id`) REFERENCES `order_item` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

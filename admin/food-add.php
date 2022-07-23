@@ -44,13 +44,13 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
             ?>
 
             <div class="row">
-                <div class="col s6" style="">
+                <div class="col s6" >
                             <div class="input-field">
                             <input id="name" name="fname" type="text" class="validate" style="color: white; width: 70%">
                             <label for="name" style="color: white;"><b>Food Name :</b></label>
                             </div>
                 </div>
-                <div class="col s6" style="">
+                <div class="col s6" >
                             <div class="input-field" style="color: white !important; width: 90%">
 						    <select name='category'>
 						      <?php 

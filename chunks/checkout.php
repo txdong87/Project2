@@ -1,5 +1,3 @@
-
-
 <div class="section">
     <div class="container">
         <div class="row">
@@ -20,26 +18,24 @@
                     <div class="input-field col s12">
                         <input class="input" type="tel" name="phone" id="phone" placeholder="Phone">
                     </div>
-                    <button name="addNew" type="submit" class="btn waves-effect waves-block waves-light">Check out</button>
+                    <button href="cart.php" name="addNew" type="submit" class="btn waves-effect waves-block waves-light" href="cart.php" >Check out</button>
                 </form>
                 <?php 
  
                 if(isset($_POST['addNew'])){
                     $pdoconn = new PDO("mysql:host=localhost; dbname=project2db", "root", "");
-                $users_id=isset($_SESSION["user_id"]);
+                $users_id=$_SESSION["user_id"];
                 $name=$_POST['name'];
                 $email=$_POST['email'];
                 $address=$_POST['address'];
                 $phone=$_POST['phone'];
                 $timestamp=date("Y-m-d H:i:s");
-             $sql="INSERT INTO `order` (`users_id`,`name`,`email`,`address`,`phone`,`timestamp`) VALUES('$users_id','$name','$email','$address','$phone','$timestamp')";
-    
-               echo($sql);
+             $sql="INSERT INTO `orders` (`users_id`,`name`,`email`,`address`,`phone`,`timestamp`) VALUES('$users_id','$name','$email','$address','$phone','$timestamp')";
          
                $query  = $pdoconn->prepare($sql);
               $query->execute(array($users_id,$name,$email,$address,$phone,$timestamp)) ;
               $last_id = $pdoconn->lastInsertId();
-              echo $last_id;
+
               if(isset($_SESSION["cart"])){
                     foreach($_SESSION["cart"] as $key => $value){
                         $price=$value["price"];
@@ -50,6 +46,7 @@
                     }
                    
                 }
+            
  
             }
             ?>
